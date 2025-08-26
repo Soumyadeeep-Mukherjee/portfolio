@@ -313,7 +313,6 @@
         font-size: 16px;
       }
       
-      /* UPDATED: Email tooltip style */
       .tooltip {
         position: absolute;
         top: 130%; /* Position below the icon */
@@ -886,6 +885,9 @@
        .mobile-social-icons .icon:hover {
         transform: scale(1.1);
       }
+       .mobile-social-icons .tooltip {
+        font-size: 0.8rem;
+       }
 
       /* Back to Top Button */
       #back-to-top-btn {
@@ -963,16 +965,29 @@
         }
         .main-grid {
           grid-template-columns: 1fr;
-          gap: 25px;
-          padding-top: 120px;
+          gap: 20px;
+          padding-top: 100px;
         }
-        .profile,
-        .hero-text {
-          grid-column: span 1;
-          grid-row: auto;
+        .profile {
+          grid-column: 1;
+          grid-row: 1;
+          max-width: 250px;
+          justify-self: center;
         }
         .hero-text {
+          grid-column: 1;
+          grid-row: 2;
           text-align: center;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+        }
+        .hero-text:hover {
+          border-color: transparent;
+          box-shadow: none;
+        }
+        .hero-text::before {
+          display: none;
         }
         .hero-name {
           font-size: 3rem;
@@ -998,6 +1013,9 @@
       @media (max-width: 480px) {
         .hero-name {
             font-size: 2.5rem;
+        }
+        .profile {
+            max-width: 200px;
         }
         .project-info h4, .cert-info h4 {
             font-size: 1.3rem;
@@ -1566,7 +1584,7 @@
             },24); // Adjust typing speed here (milliseconds)
         }
         
-        // --- UPDATED: Email Clipboard Logic ---
+        // --- Email Clipboard Logic ---
         document.querySelectorAll('.email-link').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault(); // Prevent the default mailto: action
