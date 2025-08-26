@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- SEO Meta Tags -->
     <title>Soumyadeep Mukherjee // Interactive Workspace</title>
     <meta name="title" content="Soumyadeep Mukherjee // AI | ML | Portfolio" />
     <meta
@@ -17,7 +16,6 @@
     />
     <meta name="author" content="Soumyadeep Mukherjee" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://your-domain.com/" />
     <meta property="og:title" content="Soumyadeep Mukherjee // AI & ML Portfolio" />
@@ -27,7 +25,6 @@
     />
     <meta property="og:image" content="https://your-domain.com/og-image.png" />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://your-domain.com/" />
     <meta name="twitter:title" content="Soumyadeep Mukherjee // Portfolio" />
@@ -270,6 +267,7 @@
         border-radius: 8px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
+        position: relative; /* Needed for tooltip */
       }
 
       /* GitHub - Purple styling */
@@ -297,20 +295,7 @@
         transform: scale(1.1);
         box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
       }
-
-      /* GeeksforGeeks - Original green styling */
-      .top-icons .icon.gfg {
-        background: #0f9d58;
-        color: #ffffff;
-        border: 1px solid #0d8043;
-      }
-
-      .top-icons .icon.gfg:hover {
-        background: #0d8043;
-        transform: scale(1.1);
-        box-shadow: 0 4px 12px rgba(15, 157, 88, 0.4);
-      }
-
+      
       /* Gmail - Original red/white styling */
       .top-icons .icon.email {
         background: #ea4335;
@@ -327,6 +312,31 @@
       .top-icons .icon i {
         font-size: 16px;
       }
+      
+      /* UPDATED: Email tooltip style */
+      .tooltip {
+        position: absolute;
+        top: 130%; /* Position below the icon */
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: var(--primary-glow);
+        color: var(--bg-color);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 0.9rem;
+        font-family: var(--font-primary);
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.2s, visibility 0.2s;
+        z-index: 10;
+      }
+
+      .icon:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+      }
+      
 
       .nav-links {
         list-style: none;
@@ -854,6 +864,29 @@
         cursor: pointer;
       }
 
+      /* Styles for social icons in mobile nav */
+      .mobile-social-icons {
+        display: flex;
+        gap: 20px;
+        margin-top: 30px;
+      }
+      .mobile-social-icons .icon {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        color: #ffffff;
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        position: relative; /* For tooltip */
+      }
+       .mobile-social-icons .icon:hover {
+        transform: scale(1.1);
+      }
+
       /* Back to Top Button */
       #back-to-top-btn {
         position: fixed;
@@ -893,9 +926,6 @@
         #mobile-menu-btn {
           display: block;
         }
-        .top-icons {
-          display: none;
-        }
       }
 
       @media (min-width: 769px) and (max-width: 1023px) {
@@ -928,8 +958,13 @@
       }
 
       @media (max-width: 768px) {
+        .top-icons {
+          display: none;
+        }
         .main-grid {
           grid-template-columns: 1fr;
+          gap: 25px;
+          padding-top: 120px;
         }
         .profile,
         .hero-text {
@@ -939,11 +974,38 @@
         .hero-text {
           text-align: center;
         }
+        .hero-name {
+          font-size: 3rem;
+        }
+        .hero-subtitle {
+            font-size: 1rem;
+            min-height: 120px;
+            word-wrap: break-word;
+            padding: 0 10px;
+        }
+        .card-header {
+            font-size: 1.5rem;
+            padding: 15px 20px;
+        }
+        .card-content {
+            padding: 20px;
+        }
+        .logo {
+            font-size: 2rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-name {
+            font-size: 2.5rem;
+        }
+        .project-info h4, .cert-info h4 {
+            font-size: 1.3rem;
+        }
       }
     </style>
   </head>
   <body>
-    <!-- Loading Screen -->
     <div id="loading-screen">
       <div class="loader-container">
         <div class="loader"></div>
@@ -978,12 +1040,14 @@
             class="icon linkedin"
             ><i class="fab fa-linkedin-in"></i
           ></a>
+          
           <a
             href="mailto:mrsoumya002@gmail.com"
-            title="Email"
-            class="icon email"
-            ><i class="fas fa-envelope"></i
-          ></a>
+            class="icon email email-link"
+            data-email="mrsoumya002@gmail.com"
+            ><i class="fas fa-envelope"></i>
+            <span class="tooltip">Click to copy email</span>
+          </a>
         </div>
 
         <ul class="nav-links">
@@ -1004,7 +1068,6 @@
       </div>
     </header>
 
-    <!-- Mobile Navigation Menu -->
     <nav id="mobile-nav">
       <a href="#about">ABOUT</a>
       <a href="#journey">JOURNEY</a>
@@ -1013,12 +1076,21 @@
       <a href="#certifications">CERTIFICATIONS</a>
       <a href="#contact">CONTACT</a>
       <div class="mobile-nav-actions">
-        <a href="#" download="Soumyadeep_Mukherjee_Resume.pdf" class="resume-btn"
+        <a href="Resume_Updated.pdf" download="Soumyadeep_Mukherjee_Resume.pdf" class="resume-btn"
           >RESUME</a
         >
         <button id="theme-switcher-mobile" title="Toggle Theme">
           <i class="fas fa-sun"></i>
         </button>
+      </div>
+      <div class="mobile-social-icons">
+        <a href="https://github.com/Soumyadeeep-Mukherjee" target="_blank" title="GitHub" class="icon github"><i class="fab fa-github"></i></a>
+        <a href="https://www.linkedin.com/in/soumyadeep-mukherjee-a613b8379/" target="_blank" title="LinkedIn" class="icon linkedin"><i class="fab fa-linkedin-in"></i></a>
+        
+        <a href="mailto:mrsoumya002@gmail.com" class="icon email email-link" data-email="mrsoumya002@gmail.com">
+            <i class="fas fa-envelope"></i>
+            <span class="tooltip">Click to copy email</span>
+        </a>
       </div>
     </nav>
 
@@ -1418,11 +1490,14 @@
         });
 
         mobileNavLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            mobileNav.classList.remove("open");
-            menuIcon.classList.add("fa-bars");
-            menuIcon.classList.remove("fa-times");
-          });
+          // Don't close menu for the email link, since it has its own logic
+          if (!link.classList.contains('email-link')) {
+              link.addEventListener("click", () => {
+                mobileNav.classList.remove("open");
+                menuIcon.classList.add("fa-bars");
+                menuIcon.classList.remove("fa-times");
+              });
+          }
         });
 
         // --- Back to Top Button Logic ---
@@ -1490,6 +1565,33 @@
                 }
             },24); // Adjust typing speed here (milliseconds)
         }
+        
+        // --- UPDATED: Email Clipboard Logic ---
+        document.querySelectorAll('.email-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault(); // Prevent the default mailto: action
+                const email = this.dataset.email;
+                const tooltip = this.querySelector('.tooltip');
+                
+                navigator.clipboard.writeText(email).then(() => {
+                    if (tooltip) {
+                        tooltip.textContent = 'Copied!';
+                    }
+                    setTimeout(() => {
+                       window.location.href = `mailto:${email}`;
+                    }, 300);
+
+                    setTimeout(() => {
+                        if (tooltip) {
+                            tooltip.textContent = 'Click to copy email';
+                        }
+                    }, 2000);
+                }).catch(err => {
+                    console.error('Failed to copy email: ', err);
+                    window.location.href = `mailto:${email}`;
+                });
+            });
+        });
 
         // Start the typing animation after the loading screen is gone
         setTimeout(startTypingAnimation, 2500); // Match the loading screen timeout + fade
