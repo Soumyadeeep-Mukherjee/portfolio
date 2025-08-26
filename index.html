@@ -578,26 +578,12 @@
         margin-top: 15px;
         line-height: 1.6;
         opacity: 0.9;
-        min-height: 50px; /* Reserve space for typing animation */
-      }
-
-      .hero-subtitle.typing::after {
-        content: '█';
-        display: inline-block;
-        animation: blink 1s step-end infinite;
-        color: var(--primary-glow);
-        margin-left: 5px;
       }
 
       @keyframes gradient-flow {
         to {
           background-position: 200% center;
         }
-      }
-
-      @keyframes blink {
-        0%, 50% { opacity: 1; }
-        51%, 100% { opacity: 0; }
       }
 
       .projects-grid,
@@ -994,8 +980,6 @@
         }
         .hero-subtitle {
             font-size: 1rem;
-            min-height: 120px;
-            word-wrap: break-word;
             padding: 0 10px;
         }
         .card-header {
@@ -1124,6 +1108,7 @@
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
             <p class="hero-subtitle">
+                AI & Machine Learning Student | GDG Campus Co-Lead | Open Source Contributor
             </p>
           </div>
         </div>
@@ -1564,25 +1549,6 @@
             }, 100);
           });
         });
-
-        // --- Hero Subtitle Typing Animation ---
-        const subtitleElement = document.querySelector('.hero-subtitle');
-        const originalSubtitleText = "@MAKAUT'27 || B.Sc Hons. IT (AI) || GDG on Campus Management Co-Lead 2024-25 || Open Source Contributor @GSSoC || C || Python || Ai enthusiast || Let's connect";
-        subtitleElement.textContent = ''; // Clear original text
-
-        function startTypingAnimation() {
-            subtitleElement.classList.add('typing');
-            let i = 0;
-            const typingInterval = setInterval(() => {
-                if (i < originalSubtitleText.length) {
-                    subtitleElement.textContent += originalSubtitleText.charAt(i);
-                    i++;
-                } else {
-                    clearInterval(typingInterval);
-                    subtitleElement.classList.remove('typing'); // Remove cursor when done
-                }
-            },24); // Adjust typing speed here (milliseconds)
-        }
         
         // --- Email Clipboard Logic ---
         document.querySelectorAll('.email-link').forEach(link => {
@@ -1611,8 +1577,6 @@
             });
         });
 
-        // Start the typing animation after the loading screen is gone
-        setTimeout(startTypingAnimation, 2500); // Match the loading screen timeout + fade
       });
     </script>
   </body>
