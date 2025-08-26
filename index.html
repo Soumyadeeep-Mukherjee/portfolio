@@ -584,12 +584,26 @@
         margin-top: 15px;
         line-height: 1.6;
         opacity: 0.9;
+        min-height: 3.2em; /* UPDATED: Reserve space for two lines */
+      }
+
+      .hero-subtitle.typing::after {
+        content: '█';
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+        color: var(--primary-glow);
+        margin-left: 5px;
       }
 
       @keyframes gradient-flow {
         to {
           background-position: 200% center;
         }
+      }
+
+      @keyframes blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
       }
 
       .projects-grid,
@@ -989,6 +1003,7 @@
             padding: 0 10px;
             line-height: 1.5;
             text-align: center;
+            min-height: 4.5em; /* Reserve space for 3 lines on mobile */
         }
         .card-header {
             font-size: 1.5rem;
@@ -1117,12 +1132,7 @@
         <div class="card hero-text">
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
-            
-            <p class="hero-subtitle">
-                B.Sc Hons. IT (AI) @MAKAUT'27<br>
-                GDG on Campus Management Co-Lead<br>
-                Open Source Contributor @GSSoC
-            </p>
+            <p class="hero-subtitle"></p>
           </div>
         </div>
 
@@ -1563,6 +1573,45 @@
           });
         });
         
+        // --- UPDATED: Hero Subtitle Typing Animation ---
+        const subtitleElement = document.querySelector('.hero-subtitle');
+        const phrases = [
+            "AI & Machine Learning Student",
+            "GDG on Campus Management Co-Lead",
+            "Open Source Contributor @GSSoC",
+            "B.Sc Hons. IT (AI) @MAKAUT'27"
+        ];
+        let phraseIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function typeAnimation() {
+            const currentPhrase = phrases[phraseIndex];
+            const currentText = isDeleting 
+                ? currentPhrase.substring(0, charIndex--)
+                : currentPhrase.substring(0, charIndex++);
+
+            subtitleElement.textContent = currentText;
+            subtitleElement.classList.add('typing');
+
+            let typeSpeed = isDeleting ? 75 : 150;
+
+            if (!isDeleting && charIndex === currentPhrase.length) {
+                // Pause at the end of the phrase
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            setTimeout(typeAnimation, typeSpeed);
+        }
+
+        // Start the animation after the loading screen is gone
+        setTimeout(typeAnimation, 2500);
+
+
         // --- Email Clipboard Logic ---
         document.querySelectorAll('.email-link').forEach(link => {
             link.addEventListener('click', function(e) {
