@@ -585,26 +585,37 @@
         line-height: 1.6;
         opacity: 0.9;
         min-height: 3.2em;
+        white-space: pre-wrap; /* Allows line breaks */
       }
-       /* UPDATED: Blinking cursor for typing animation */
-      .hero-subtitle .typing-cursor {
+       
+      .hero-subtitle-container {
         display: inline-block;
-        background-color: var(--primary-glow);
-        width: 10px;
-        height: 1em;
-        animation: blink 1s step-end infinite;
-        margin-left: 5px;
+        vertical-align: top;
       }
+      
+      .typing-animation {
+        display: inline-block;
+        border-right: 3px solid var(--primary-glow);
+        white-space: nowrap;
+        overflow: hidden;
+        animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+      }
+
+      @keyframes typing {
+        from { width: 0 }
+        to { width: 100% }
+      }
+
+      @keyframes blink-caret {
+        from, to { border-color: transparent }
+        50% { border-color: var(--primary-glow); }
+      }
+
 
       @keyframes gradient-flow {
         to {
           background-position: 200% center;
         }
-      }
-      
-      @keyframes blink {
-        from, to { background-color: transparent }
-        50% { background-color: var(--primary-glow); }
       }
 
       .projects-grid,
@@ -1133,7 +1144,9 @@
         <div class="card hero-text">
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
-            <p class="hero-subtitle" id="hero-subtitle-text"></p>
+            <p class="hero-subtitle">
+                <span class="hero-subtitle-container typing-animation">B.Sc Hons. IT (AI) @MAKAUT'27<br>GDG on Campus Management Co-Lead<br>Open Source Contributor @GSSoC<br>C || Python<br>AI Enthusiast || Let's Connect</span>
+            </p>
           </div>
         </div>
 
@@ -1306,7 +1319,6 @@
         // --- Loading Screen Logic ---
         const loadingScreen = document.getElementById("loading-screen");
 
-        // Simulate loading time and hide loading screen
         setTimeout(() => {
           loadingScreen.classList.add("fade-out");
           setTimeout(() => {
@@ -1574,39 +1586,6 @@
           });
         });
         
-        // --- UPDATED: Hero Subtitle Typing Animation ---
-        const subtitleElement = document.getElementById('hero-subtitle-text');
-        const fullText = "B.Sc Hons. IT (AI) @MAKAUT'27<br>GDG on Campus Management Co-Lead<br>Open Source Contributor @GSSoC"<br>C || Python<br>AI Enthusiast || Let's Connect;
-        let charIndex = 0;
-
-        function typeFullText() {
-            if (charIndex < fullText.length) {
-                // Check for <br> tag
-                if (fullText.substring(charIndex, charIndex + 4) === '<br>') {
-                    subtitleElement.innerHTML += '<br>';
-                    charIndex += 4;
-                } else {
-                    subtitleElement.innerHTML += fullText.charAt(charIndex);
-                    charIndex++;
-                }
-                setTimeout(typeFullText, 25); // Adjust typing speed here
-            } else {
-                // Animation finished, remove cursor
-                const cursor = subtitleElement.querySelector('.typing-cursor');
-                if (cursor) {
-                    cursor.style.display = 'none';
-                }
-            }
-        }
-        
-        // Start the animation after the loading screen is gone
-        setTimeout(() => {
-            subtitleElement.innerHTML = ''; // Clear any initial text
-            subtitleElement.innerHTML += '<span class="typing-cursor"></span>'; // Add cursor
-            typeFullText();
-        }, 2500);
-
-
         // --- Email Clipboard Logic ---
         document.querySelectorAll('.email-link').forEach(link => {
             link.addEventListener('click', function(e) {
@@ -1638,4 +1617,3 @@
     </script>
   </body>
 </html>
-
