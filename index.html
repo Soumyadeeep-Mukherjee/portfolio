@@ -382,8 +382,14 @@
         cursor: pointer;
         transition: 0.3s;
       }
+      
+      .mobile-header-actions {
+          display: none; /* Hidden by default */
+          align-items: center;
+          gap: 15px;
+      }
+
       #mobile-menu-btn {
-        display: none;
         background: none;
         border: none;
         color: var(--text-color);
@@ -825,17 +831,17 @@
       }
       #mobile-nav a {
         font-family: var(--font-secondary);
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         color: var(--text-color);
         text-decoration: none;
-        margin: 20px 0;
+        margin: 18px 0;
         transition: color 0.3s;
       }
       #mobile-nav a:hover {
         color: var(--primary-glow);
       }
       .mobile-nav-actions {
-        margin-top: 40px;
+        margin-top: 30px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -845,7 +851,7 @@
         background: none;
         border: none;
         color: var(--text-color);
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         cursor: pointer;
       }
 
@@ -856,9 +862,9 @@
         margin-top: 30px;
       }
       .mobile-social-icons .icon {
-        width: 45px;
-        height: 45px;
-        font-size: 1.2rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -911,8 +917,8 @@
         .header-actions {
           display: none;
         }
-        #mobile-menu-btn {
-          display: block;
+        .mobile-header-actions {
+            display: flex;
         }
       }
 
@@ -981,6 +987,8 @@
         .hero-subtitle {
             font-size: 1rem;
             padding: 0 10px;
+            line-height: 1.5;
+            text-align: center;
         }
         .card-header {
             font-size: 1.5rem;
@@ -1066,7 +1074,11 @@
           >
           <button id="theme-switcher" title="Toggle Theme"><i class="fas fa-sun"></i></button>
         </div>
-        <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        
+        <div class="mobile-header-actions">
+             <a href="Resume_Updated.pdf" download="Soumyadeep_Mukherjee_Resume.pdf" class="resume-btn">RESUME</a>
+             <button id="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+        </div>
       </div>
     </header>
 
@@ -1078,9 +1090,7 @@
       <a href="#certifications">CERTIFICATIONS</a>
       <a href="#contact">CONTACT</a>
       <div class="mobile-nav-actions">
-        <a href="Resume_Updated.pdf" download="Soumyadeep_Mukherjee_Resume.pdf" class="resume-btn"
-          >RESUME</a
-        >
+        
         <button id="theme-switcher-mobile" title="Toggle Theme">
           <i class="fas fa-sun"></i>
         </button>
@@ -1107,8 +1117,11 @@
         <div class="card hero-text">
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
+            
             <p class="hero-subtitle">
-                AI & Machine Learning Student | GDG Campus Co-Lead | Open Source Contributor
+                B.Sc Hons. IT (AI) @MAKAUT'27<br>
+                GDG on Campus Management Co-Lead<br>
+                Open Source Contributor @GSSoC
             </p>
           </div>
         </div>
