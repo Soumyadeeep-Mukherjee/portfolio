@@ -570,15 +570,18 @@
         animation: gradient-flow 5s linear infinite;
       }
 
-      /* === NEW SUBTITLE STYLES START === */
+      /* === SUBTITLE LAYOUT STYLES START === */
       .hero-subtitle {
         display: flex;
         flex-wrap: wrap;
-        gap: 0.5em 1em; /* Vertical and horizontal gap */
+        gap: 0.5em 1em;
         margin-top: 20px;
         align-items: center;
         font-size: 1.1rem;
         line-height: 1.6;
+        /* FIX: Added justified alignment for desktop */
+        justify-content: space-between;
+        width: 100%;
       }
       .hero-subtitle .subtitle-part {
         opacity: 0;
@@ -595,7 +598,7 @@
         color: var(--primary-glow);
         opacity: 0.5;
       }
-      /* === NEW SUBTITLE STYLES END === */
+      /* === SUBTITLE LAYOUT STYLES END === */
 
       @keyframes gradient-flow {
         to {
@@ -952,7 +955,8 @@
           text-align: center;
         }
         .hero-subtitle {
-          justify-content: center; /* Center items on tablet/mobile */
+          /* FIX: Center alignment for mobile */
+          justify-content: center;
           text-align: center;
         }
         #about,
@@ -979,7 +983,7 @@
           text-align: left;
         }
         .hero-subtitle {
-          justify-content: flex-start;
+          justify-content: space-between;
         }
         #about,
         #journey,
@@ -1188,6 +1192,7 @@
         <div class="card hero-text">
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
+            <!-- === NEW SUBTITLE STRUCTURE START === -->
             <div class="hero-subtitle" id="animated-subtitle-container">
               <span class="subtitle-part"
                 >B.Sc Hons. IT (AI) minor in BBA@MAKAUT'27</span
@@ -1199,7 +1204,8 @@
               <span class="subtitle-part">Python || C</span>
               <span class="subtitle-part">Let's connect :)</span>
             </div>
-            </div>
+            <!-- === NEW SUBTITLE STRUCTURE END === -->
+          </div>
         </div>
 
         <section id="about" class="card about animate-on-scroll">
@@ -1500,7 +1506,7 @@
           }, 500);
         }, 2000);
 
-        // === NEW JAVASCRIPT ANIMATION FOR SUBTITLE START ===
+        // === JAVASCRIPT ANIMATION FOR SUBTITLE START ===
         const subtitleParts = document.querySelectorAll(
           ".hero-subtitle .subtitle-part"
         );
@@ -1509,7 +1515,7 @@
             part.classList.add("visible");
           }, index * 200 + 500); // 200ms delay between parts, 500ms initial delay
         });
-        // === NEW JAVASCRIPT ANIMATION FOR SUBTITLE END ===
+        // === JAVASCRIPT ANIMATION FOR SUBTITLE END ===
 
         // --- Scroll Animations ---
         const observer = new IntersectionObserver(
