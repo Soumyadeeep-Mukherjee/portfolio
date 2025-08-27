@@ -570,24 +570,32 @@
         animation: gradient-flow 5s linear infinite;
       }
 
-      /* === JS ANIMATION STYLES START === */
+      /* === NEW SUBTITLE STYLES START === */
       .hero-subtitle {
-        font-family: var(--font-primary);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5em 1em; /* Vertical and horizontal gap */
+        margin-top: 20px;
+        align-items: center;
         font-size: 1.1rem;
         line-height: 1.6;
-        color: var(--text-color);
-        margin-top: 20px;
-        text-align: left;
-        /* Set a minimum height to avoid layout shift */
-        min-height: 50px;
       }
-      .hero-subtitle .char {
-        display: inline-block;
+      .hero-subtitle .subtitle-part {
         opacity: 0;
-        transform: translateY(20px);
+        transform: translateY(15px);
         transition: opacity 0.5s ease, transform 0.5s ease;
       }
-      /* === JS ANIMATION STYLES END === */
+      .hero-subtitle .subtitle-part.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .hero-subtitle .subtitle-part:not(:last-child)::after {
+        content: "||";
+        margin-left: 1em;
+        color: var(--primary-glow);
+        opacity: 0.5;
+      }
+      /* === NEW SUBTITLE STYLES END === */
 
       @keyframes gradient-flow {
         to {
@@ -944,6 +952,7 @@
           text-align: center;
         }
         .hero-subtitle {
+          justify-content: center; /* Center items on tablet/mobile */
           text-align: center;
         }
         #about,
@@ -970,7 +979,7 @@
           text-align: left;
         }
         .hero-subtitle {
-          text-align: left;
+          justify-content: flex-start;
         }
         #about,
         #journey,
@@ -1024,7 +1033,6 @@
         }
         .hero-subtitle {
           font-size: 1rem;
-          text-align: center;
         }
         .card-header {
           font-size: 1.5rem;
@@ -1180,10 +1188,17 @@
         <div class="card hero-text">
           <div class="card-content">
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
-            <p class="hero-subtitle" id="animated-subtitle">
-              B.Sc Hons. IT (AI) minor in BBA@MAKAUT'27 || AI Enthusiast || GDG
-              Management Co-Lead (2023-24) || Python || C || Let's connect :)
-            </p>
+            <div class="hero-subtitle" id="animated-subtitle-container">
+              <span class="subtitle-part"
+                >B.Sc Hons. IT (AI) minor in BBA@MAKAUT'27</span
+              >
+              <span class="subtitle-part">AI Enthusiast</span>
+              <span class="subtitle-part"
+                >GDG Management Co-Lead (2023-24)</span
+              >
+              <span class="subtitle-part">Python || C</span>
+              <span class="subtitle-part">Let's connect :)</span>
+            </div>
             </div>
         </div>
 
@@ -1484,30 +1499,17 @@
             loadingScreen.style.display = "none";
           }, 500);
         }, 2000);
-        
+
         // === NEW JAVASCRIPT ANIMATION FOR SUBTITLE START ===
-        const subtitle = document.getElementById("animated-subtitle");
-        const text = subtitle.textContent;
-        subtitle.textContent = ""; // Clear original text
-
-        // Create a span for each character
-        text.split("").forEach((char) => {
-          const charSpan = document.createElement("span");
-          charSpan.className = "char";
-          charSpan.textContent = char === " " ? "\u00A0" : char; // Handle spaces
-          subtitle.appendChild(charSpan);
-        });
-
-        // Animate each character with a delay
-        const chars = subtitle.querySelectorAll(".char");
-        chars.forEach((char, index) => {
+        const subtitleParts = document.querySelectorAll(
+          ".hero-subtitle .subtitle-part"
+        );
+        subtitleParts.forEach((part, index) => {
           setTimeout(() => {
-            char.style.opacity = "1";
-            char.style.transform = "translateY(0)";
-          }, index * 15 + 500); // 15ms delay between chars, 500ms initial delay
+            part.classList.add("visible");
+          }, index * 200 + 500); // 200ms delay between parts, 500ms initial delay
         });
         // === NEW JAVASCRIPT ANIMATION FOR SUBTITLE END ===
-
 
         // --- Scroll Animations ---
         const observer = new IntersectionObserver(
