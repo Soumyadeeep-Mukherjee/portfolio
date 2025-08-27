@@ -245,7 +245,6 @@
         padding: 0 20px;
         position: relative;
         z-index: 1;
-        /* FIX: Added centering styles */
         display: flex;
         justify-content: center;
         align-items: center;
@@ -279,11 +278,10 @@
         color: var(--primary-glow);
       }
 
-      /* Top icons container with original logo styles */
       .top-icons {
         display: flex;
         align-items: center;
-        gap: 15px; /* Adjusted gap */
+        gap: 15px;
         margin-left: 15px;
       }
 
@@ -296,36 +294,33 @@
         border-radius: 8px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
         cursor: pointer;
-        position: relative; /* Needed for tooltip */
+        position: relative;
       }
 
-      /* GitHub - Purple styling */
       .top-icons .icon.github {
-        background: #6f42c1; /* GitHub Purple */
+        background: #6f42c1;
         color: #ffffff;
         border: 1px solid #5a2d91;
       }
 
       .top-icons .icon.github:hover {
-        background: #5a2d91; /* Darker purple on hover */
+        background: #5a2d91;
         transform: scale(1.1);
         box-shadow: 0 4px 12px rgba(111, 66, 193, 0.4);
       }
 
-      /* LinkedIn - Blue styling */
       .top-icons .icon.linkedin {
-        background: #0077b5; /* LinkedIn Blue */
+        background: #0077b5;
         color: #ffffff;
         border: 1px solid #005582;
       }
 
       .top-icons .icon.linkedin:hover {
-        background: #005582; /* Darker blue on hover */
+        background: #005582;
         transform: scale(1.1);
         box-shadow: 0 4px 12px rgba(0, 119, 181, 0.4);
       }
 
-      /* Gmail - Original red/white styling */
       .top-icons .icon.email {
         background: #ea4335;
         color: #ffffff;
@@ -344,7 +339,7 @@
 
       .tooltip {
         position: absolute;
-        top: 130%; /* Position below the icon */
+        top: 130%;
         left: 50%;
         transform: translateX(-50%);
         background-color: var(--primary-glow);
@@ -412,7 +407,7 @@
       }
 
       .mobile-header-actions {
-        display: none; /* Hidden by default */
+        display: none;
         align-items: center;
         gap: 15px;
       }
@@ -434,7 +429,7 @@
         gap: 35px;
         position: relative;
         z-index: 2;
-        width: 100%; /* Ensure grid takes full width */
+        width: 100%;
       }
       section {
         padding-top: 100px;
@@ -446,8 +441,8 @@
         padding: 0;
         border-radius: 10px;
         overflow: hidden;
-        opacity: 1; /* Default visible */
-        transform: translateY(0) rotateX(0deg); /* Default position */
+        opacity: 1;
+        transform: translateY(0) rotateX(0deg);
         transition: opacity 0.6s ease-out, transform 0.6s ease-out,
           box-shadow 0.3s ease, border-color 0.3s ease,
           background-color 0.3s ease;
@@ -455,7 +450,6 @@
         z-index: 3;
       }
 
-      /* Animation classes for scroll reveal */
       .card.animate-on-scroll {
         opacity: 0;
         transform: translateY(50px) rotateX(-15deg);
@@ -527,18 +521,18 @@
       /* Grid Layout */
       .profile {
         grid-column: 1 / 2;
-        grid-row: 1 / 2; /* Changed to 1 / 2 */
-        border-radius: 50%; /* Make it a circle */
-        padding: 0; /* Remove padding */
-        aspect-ratio: 1 / 1; /* Enforce square for circle */
+        grid-row: 1 / 2;
+        border-radius: 50%;
+        padding: 0;
+        aspect-ratio: 1 / 1;
         transform-style: preserve-3d;
-        overflow: visible; /* Allow glowing border to show */
-        background: transparent; /* Remove card background */
-        border: none; /* Remove card border */
+        overflow: visible;
+        background: transparent;
+        border: none;
       }
       .hero-text {
         grid-column: 2 / 4;
-        grid-row: 1 / 2; /* Explicitly set */
+        grid-row: 1 / 2;
         align-self: center;
       }
       #about,
@@ -556,11 +550,10 @@
         object-fit: cover;
         display: block;
         transition: transform 0.2s ease-out;
-        border-radius: 50%; /* Ensure image is also circular */
+        border-radius: 50%;
         transform: translateZ(30px);
       }
 
-      /* Eye-catching border for profile */
       .profile::after {
         content: "";
         position: absolute;
@@ -610,8 +603,8 @@
         font-family: var(--font-primary);
         font-size: 1.3rem;
         margin-top: 15px;
-        justify-content: flex-start; /* Aligns items to the start */
-        min-height: 1.5em; /* Reserve space for one line of text */
+        justify-content: flex-start;
+        min-height: 1.8em; /* Increased min-height */
       }
       .static-text {
         white-space: nowrap;
@@ -621,8 +614,8 @@
         list-style: none;
         padding: 0;
         margin: 0;
-        height: 1.5em; /* Match line height */
-        line-height: 1.5em;
+        height: 1.8em; /* FIX: Increased height */
+        line-height: 1.8em; /* FIX: Increased line-height */
         overflow: hidden;
       }
       .dynamic-texts li {
@@ -632,7 +625,7 @@
       }
       @keyframes slide {
         100% {
-          top: -7.5em; /* 5 items * 1.5em */
+          top: -9em; /* FIX: Adjusted for 5 items * 1.8em */
         }
       }
       .dynamic-texts li span {
@@ -644,13 +637,18 @@
         left: 0;
         height: 100%;
         width: 100%;
-        background: var(--bg-color); /* Match background */
+        background: var(--bg-color);
         border-left: 2px solid var(--primary-glow);
         animation: typing 2s steps(12) infinite;
       }
       @keyframes typing {
-        40%, 60% { left: calc(100% + 4px); }
-        100% { left: 0; }
+        40%,
+        60% {
+          left: calc(100% + 4px);
+        }
+        100% {
+          left: 0;
+        }
       }
       @keyframes gradient-flow {
         to {
@@ -704,20 +702,20 @@
         text-decoration: none;
         color: var(--text-color);
         transition: 0.3s ease;
-        display: block; /* Changed to block */
-        overflow: hidden; /* Hide overflowing parts of the image */
+        display: block;
+        overflow: hidden;
       }
       .certification-card:hover {
         transform: scale(1.05);
         box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
       }
       .cert-image {
-        width: 100%; /* Make image fill the width */
-        height: 180px; /* Set a fixed height for rectangular shape */
+        width: 100%;
+        height: 180px;
         object-fit: cover;
       }
       .cert-info {
-        padding: 20px; /* Add padding to the text area */
+        padding: 20px;
       }
       .cert-info h4 {
         font-size: 1.5rem;
@@ -768,7 +766,6 @@
         box-shadow: 0 0 15px var(--primary-glow);
       }
 
-      /* Terminal Modal */
       #terminal-container {
         position: fixed;
         bottom: -100%;
@@ -821,7 +818,6 @@
         font-weight: bold;
       }
 
-      /* Journey Timeline */
       .timeline {
         position: relative;
         padding: 20px 0;
@@ -895,6 +891,19 @@
       #mobile-nav.open {
         left: 0;
       }
+      /* FIX: Added close button style */
+      #mobile-nav-close-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        background: none;
+        border: none;
+        color: var(--text-color);
+        font-size: 2.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        line-height: 1;
+      }
       #mobile-nav a {
         font-family: var(--font-secondary);
         font-size: 2.2rem;
@@ -921,7 +930,6 @@
         cursor: pointer;
       }
 
-      /* Styles for social icons in mobile nav */
       .mobile-social-icons {
         display: flex;
         gap: 20px;
@@ -938,7 +946,7 @@
         color: #ffffff;
         text-decoration: none;
         transition: transform 0.3s ease;
-        position: relative; /* For tooltip */
+        position: relative;
       }
       .mobile-social-icons .icon:hover {
         transform: scale(1.1);
@@ -947,7 +955,6 @@
         font-size: 0.8rem;
       }
 
-      /* Back to Top Button */
       #back-to-top-btn {
         position: fixed;
         bottom: 30px;
@@ -986,7 +993,6 @@
         .mobile-header-actions {
           display: flex;
         }
-        /* Make hero section single column on tablets */
         .main-grid {
           grid-template-columns: 1fr;
         }
@@ -1191,6 +1197,7 @@
     </header>
 
     <nav id="mobile-nav">
+      <button id="mobile-nav-close-btn">&times;</button>
       <a href="#about">ABOUT</a>
       <a href="#journey">JOURNEY</a>
       <a href="#projects">PROJECTS</a>
@@ -1241,10 +1248,10 @@
               <div class="static-text">I am an</div>
               <ul class="dynamic-texts">
                 <li><span>AI Enthusiast</span></li>
-                <li><span>Open Source Contributor@GSSOC'24</span></li>
-                <li><span>BSc.IT(A.I) Student @MAKAUT'27</span></li>
+                <li><span>Open Source Contributor</span></li>
+                <li><span>IT Student @MAKAUT</span></li>
                 <li><span>GDG Management Co-Lead</span></li>
-                <li><span>C||Python Proficiency</span></li>
+                <li><span>Python Developer</span></li>
               </ul>
             </div>
           </div>
@@ -1257,8 +1264,7 @@
               style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem;"
             >
               IT Student specializing in
-              <strong>Artificial Intelligence & Machine Learning</strong>, with
-              hands-on experience building and deploying
+              <strong>Artificial Intelligence & Machine Learning</strong>, with hands-on experience building and deploying
               <strong>AI agents, predictive models,</strong> and real-world
               applications.
             </p>
@@ -1287,7 +1293,8 @@
           <div class="card-content timeline">
             <div class="timeline-entry">
               <h4>Management Co-Lead, GDG on Campus</h4>
-              <p>May 2024 - Present</p>
+              <p>Oct 2024 - Present</p>
+             
               <ul>
                 <li>
                   Co-organized a 1-day Python workshop (200+ attendees) and a
@@ -1300,6 +1307,7 @@
                 <li>
                   Managed outreach, participant data, and session planning to
                   maximize turnout and ensure value-driven learning experiences.
+                 
                 </li>
               </ul>
             </div>
@@ -1309,7 +1317,8 @@
             </div>
             <div class="timeline-entry">
               <h4>BSc. Hons. IT (Artificial Intelligence)</h4>
-              <p>MAKAUT, WB | 2022 - 2025</p>
+              <p>MAKAUT, WB | Sep 2023 - Aug 2027</p>
+             
               <p style="margin-top: 10px;">
                 Currently pursuing my degree with focus on Artificial
                 Intelligence and Machine Learning. Active in various technical
@@ -1331,7 +1340,7 @@
               <div class="project-info">
                 <h4>JobEazy</h4>
                 <p>
-                  An AI-powered job finder that uses Gemini to suggest jobs
+                  An AI-powered job finder that uses the Gemini API to suggest jobs
                   based on skills.
                 </p>
               </div>
@@ -1425,7 +1434,11 @@
               rel="noopener noreferrer"
               class="certification-card"
             >
-              <img src="Postman.png" alt="API Expert" class="cert-image" />
+              <img
+                src="Postman.png"
+                alt="API Expert"
+                class="cert-image"
+              />
               <div class="cert-info">
                 <h4>API Student Expert</h4>
                 <p>POSTMAN</p>
@@ -1545,8 +1558,8 @@
           loadingScreen.classList.add("fade-out");
           setTimeout(() => {
             loadingScreen.style.display = "none";
-          }, 500); // Wait for fade animation to complete
-        }, 2000); // Show loading for 2 seconds
+          }, 500);
+        }, 2000);
 
         // --- Scroll Animations ---
         const observer = new IntersectionObserver(
@@ -1746,6 +1759,16 @@
         const mobileNav = document.getElementById("mobile-nav");
         const mobileNavLinks = mobileNav.querySelectorAll("a");
         const menuIcon = mobileMenuBtn.querySelector("i");
+        // FIX: Get the new close button
+        const mobileNavCloseBtn = document.getElementById(
+          "mobile-nav-close-btn"
+        );
+
+        function closeMobileMenu() {
+          mobileNav.classList.remove("open");
+          menuIcon.classList.add("fa-bars");
+          menuIcon.classList.remove("fa-times");
+        }
 
         mobileMenuBtn.addEventListener("click", () => {
           mobileNav.classList.toggle("open");
@@ -1753,14 +1776,12 @@
           menuIcon.classList.toggle("fa-times");
         });
 
+        // FIX: Add event listener to the new close button
+        mobileNavCloseBtn.addEventListener("click", closeMobileMenu);
+
         mobileNavLinks.forEach((link) => {
-          // Don't close menu for the email link, since it has its own logic
           if (!link.classList.contains("email-link")) {
-            link.addEventListener("click", () => {
-              mobileNav.classList.remove("open");
-              menuIcon.classList.add("fa-bars");
-              menuIcon.classList.remove("fa-times");
-            });
+            link.addEventListener("click", closeMobileMenu);
           }
         });
 
@@ -1814,7 +1835,7 @@
         // --- Email Clipboard Logic ---
         document.querySelectorAll(".email-link").forEach((link) => {
           link.addEventListener("click", function (e) {
-            e.preventDefault(); // Prevent the default mailto: action
+            e.preventDefault();
             const email = this.dataset.email;
             const tooltip = this.querySelector(".tooltip");
 
