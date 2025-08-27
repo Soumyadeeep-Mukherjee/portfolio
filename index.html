@@ -109,14 +109,12 @@
         color: var(--text-color);
         font-family: var(--font-primary);
         overflow-x: hidden;
-        /* Updated cursor for better visibility */
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" style="font-size:32px;"><text y="26" style="fill:%2300ffff;">+</text></svg>')
           16 16,
           auto;
         transition: background-color 0.3s ease, color 0.3s ease;
       }
 
-      /* --- Loading Screen Styles --- */
       #loading-screen {
         position: fixed;
         top: 0;
@@ -145,7 +143,6 @@
         gap: 30px;
       }
 
-      /* Spinning ring loader */
       .loader {
         width: 60px;
         height: 60px;
@@ -164,7 +161,6 @@
         }
       }
 
-      /* Loading text */
       .loading-text {
         font-family: var(--font-secondary);
         font-size: 1.5rem;
@@ -183,7 +179,6 @@
         }
       }
 
-      /* Animated dots */
       .loading-dots {
         display: flex;
         gap: 8px;
@@ -218,7 +213,6 @@
         }
       }
 
-      /* --- Overlays --- */
       #particle-canvas {
         position: fixed;
         top: 0;
@@ -251,7 +245,6 @@
         min-height: 100vh;
       }
 
-      /* --- Header --- */
       header {
         position: fixed;
         width: 100%;
@@ -421,7 +414,6 @@
         z-index: 1002;
       }
 
-      /* --- Main Grid --- */
       .main-grid {
         padding: 150px 0 50px 0;
         display: grid;
@@ -518,7 +510,6 @@
         color: var(--primary-glow);
       }
 
-      /* Grid Layout */
       .profile {
         grid-column: 1 / 2;
         grid-row: 1 / 2;
@@ -597,59 +588,49 @@
         animation: gradient-flow 5s linear infinite;
       }
 
-      /* FIX: Subtitle Styling */
+      /* === SUBTITLE FIXES START === */
       .hero-subtitle {
         display: flex;
+        align-items: center; /* Vertically align text */
         font-family: var(--font-primary);
         font-size: 1.3rem;
         margin-top: 15px;
-        justify-content: flex-start;
-        min-height: 1.8em; /* Increased min-height */
+        min-height: 2em; /* Ensure enough height for text */
+        width: 100%; /* Allow container to use full width */
       }
       .static-text {
         white-space: nowrap;
         padding-right: 10px;
       }
+      .dynamic-texts-wrapper {
+        flex-grow: 1; /* Allow this part to take remaining space */
+        height: 2em; /* Match line height */
+        line-height: 2em;
+        overflow: hidden;
+        position: relative;
+      }
       .dynamic-texts {
         list-style: none;
         padding: 0;
         margin: 0;
-        height: 1.8em; /* FIX: Increased height */
-        line-height: 1.8em; /* FIX: Increased line-height */
-        overflow: hidden;
-      }
-      .dynamic-texts li {
-        position: relative;
-        color: var(--primary-glow);
-        animation: slide 10s steps(5) infinite;
+        position: absolute;
+        top: 0;
+        left: 0;
+        animation: slide 12.5s steps(5) infinite; /* 2.5s per item * 5 items */
       }
       @keyframes slide {
         100% {
-          top: -9em; /* FIX: Adjusted for 5 items * 1.8em */
+          top: -10em; /* 5 items * 2em height */
         }
       }
-      .dynamic-texts li span {
-        position: relative;
+      .dynamic-texts li {
+        height: 2em;
+        line-height: 2em;
+        color: var(--primary-glow);
+        white-space: nowrap; /* Prevent long text from wrapping */
       }
-      .dynamic-texts li span::after {
-        content: "";
-        position: absolute;
-        left: 0;
-        height: 100%;
-        width: 100%;
-        background: var(--bg-color);
-        border-left: 2px solid var(--primary-glow);
-        animation: typing 2s steps(12) infinite;
-      }
-      @keyframes typing {
-        40%,
-        60% {
-          left: calc(100% + 4px);
-        }
-        100% {
-          left: 0;
-        }
-      }
+      /* === SUBTITLE FIXES END === */
+
       @keyframes gradient-flow {
         to {
           background-position: 200% center;
@@ -872,7 +853,6 @@
         color: var(--secondary-glow);
       }
 
-      /* Mobile Menu Overlay */
       #mobile-nav {
         position: fixed;
         top: 0;
@@ -891,7 +871,6 @@
       #mobile-nav.open {
         left: 0;
       }
-      /* FIX: Added close button style */
       #mobile-nav-close-btn {
         position: absolute;
         top: 20px;
@@ -984,7 +963,6 @@
         transform: scale(1.1);
       }
 
-      /* --- Responsive Design --- */
       @media (max-width: 1024px) {
         .nav-links,
         .header-actions {
@@ -1246,15 +1224,17 @@
             <h1 class="hero-name">Soumyadeep Mukherjee</h1>
             <div class="hero-subtitle">
               <div class="static-text">I am an</div>
-              <ul class="dynamic-texts">
-                <li><span>AI Enthusiast</span></li>
-                <li><span>Open Source Contributor</span></li>
-                <li><span>IT Student @MAKAUT</span></li>
-                <li><span>GDG Management Co-Lead</span></li>
-                <li><span>Python Developer</span></li>
-              </ul>
+              <div class="dynamic-texts-wrapper">
+                <ul class="dynamic-texts">
+                  <li>AI Enthusiast</li>
+                  <li>GDG Management Co-Lead</li>
+                  <li>Open Source Contributor</li>
+                  <li>Python & C++ Developer</li>
+                  <li>IT Student @MAKAUT</li>
+                </ul>
+              </div>
             </div>
-          </div>
+            </div>
         </div>
 
         <section id="about" class="card about animate-on-scroll">
@@ -1264,7 +1244,8 @@
               style="font-size: 1.2rem; line-height: 1.6; margin-bottom: 1rem;"
             >
               IT Student specializing in
-              <strong>Artificial Intelligence & Machine Learning</strong>, with hands-on experience building and deploying
+              <strong>Artificial Intelligence & Machine Learning</strong>, with
+              hands-on experience building and deploying
               <strong>AI agents, predictive models,</strong> and real-world
               applications.
             </p>
@@ -1294,7 +1275,6 @@
             <div class="timeline-entry">
               <h4>Management Co-Lead, GDG on Campus</h4>
               <p>Oct 2024 - Present</p>
-             
               <ul>
                 <li>
                   Co-organized a 1-day Python workshop (200+ attendees) and a
@@ -1307,7 +1287,6 @@
                 <li>
                   Managed outreach, participant data, and session planning to
                   maximize turnout and ensure value-driven learning experiences.
-                 
                 </li>
               </ul>
             </div>
@@ -1318,7 +1297,6 @@
             <div class="timeline-entry">
               <h4>BSc. Hons. IT (Artificial Intelligence)</h4>
               <p>MAKAUT, WB | Sep 2023 - Aug 2027</p>
-             
               <p style="margin-top: 10px;">
                 Currently pursuing my degree with focus on Artificial
                 Intelligence and Machine Learning. Active in various technical
@@ -1340,8 +1318,8 @@
               <div class="project-info">
                 <h4>JobEazy</h4>
                 <p>
-                  An AI-powered job finder that uses the Gemini API to suggest jobs
-                  based on skills.
+                  An AI-powered job finder that uses the Gemini API to suggest
+                  jobs based on skills.
                 </p>
               </div>
             </div>
@@ -1434,11 +1412,7 @@
               rel="noopener noreferrer"
               class="certification-card"
             >
-              <img
-                src="Postman.png"
-                alt="API Expert"
-                class="cert-image"
-              />
+              <img src="Postman.png" alt="API Expert" class="cert-image" />
               <div class="cert-info">
                 <h4>API Student Expert</h4>
                 <p>POSTMAN</p>
@@ -1551,7 +1525,6 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // --- Loading Screen Logic ---
         const loadingScreen = document.getElementById("loading-screen");
 
         setTimeout(() => {
@@ -1561,7 +1534,6 @@
           }, 500);
         }, 2000);
 
-        // --- Scroll Animations ---
         const observer = new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
@@ -1577,7 +1549,6 @@
           .querySelectorAll(".animate-on-scroll")
           .forEach((el) => observer.observe(el));
 
-        // --- Particle System (optimized) ---
         const canvas = document.getElementById("particle-canvas");
         const ctx = canvas.getContext("2d");
         canvas.width = window.innerWidth;
@@ -1638,7 +1609,6 @@
           initParticles();
         });
 
-        // --- TERMINAL LOGIC ---
         const terminalContainer = document.getElementById("terminal-container");
         const terminalOutput = document.getElementById("terminal-output");
         const terminalTitle = document.getElementById("terminal-title");
@@ -1701,7 +1671,6 @@
           }
         });
 
-        // --- THEME SWITCHER LOGIC ---
         const themeSwitchers = [
           document.getElementById("theme-switcher"),
           document.getElementById("theme-switcher-mobile"),
@@ -1738,7 +1707,6 @@
           }
         });
 
-        // --- SKILL TOOLTIP LOGIC ---
         const skillTags = document.querySelectorAll(".skill-tag");
         const tooltip = document.getElementById("skill-tooltip");
 
@@ -1754,12 +1722,10 @@
           });
         });
 
-        // --- MOBILE MENU LOGIC ---
         const mobileMenuBtn = document.getElementById("mobile-menu-btn");
         const mobileNav = document.getElementById("mobile-nav");
         const mobileNavLinks = mobileNav.querySelectorAll("a");
         const menuIcon = mobileMenuBtn.querySelector("i");
-        // FIX: Get the new close button
         const mobileNavCloseBtn = document.getElementById(
           "mobile-nav-close-btn"
         );
@@ -1776,7 +1742,6 @@
           menuIcon.classList.toggle("fa-times");
         });
 
-        // FIX: Add event listener to the new close button
         mobileNavCloseBtn.addEventListener("click", closeMobileMenu);
 
         mobileNavLinks.forEach((link) => {
@@ -1785,7 +1750,6 @@
           }
         });
 
-        // --- Back to Top Button Logic ---
         const backToTopBtn = document.getElementById("back-to-top-btn");
         window.addEventListener("scroll", () => {
           if (window.scrollY > 300) {
@@ -1799,7 +1763,6 @@
           window.scrollTo({ top: 0, behavior: "smooth" });
         });
 
-        // --- Touch-friendly tap animation ---
         document.querySelectorAll(".card").forEach((card) => {
           card.addEventListener(
             "touchstart",
@@ -1815,7 +1778,6 @@
           });
         });
 
-        // --- Interactive Glowing Border on Cards (optimized throttling) ---
         document.querySelectorAll(".card").forEach((card) => {
           let throttleTimeout = null;
           card.addEventListener("mousemove", (e) => {
@@ -1832,7 +1794,6 @@
           });
         });
 
-        // --- Email Clipboard Logic ---
         document.querySelectorAll(".email-link").forEach((link) => {
           link.addEventListener("click", function (e) {
             e.preventDefault();
