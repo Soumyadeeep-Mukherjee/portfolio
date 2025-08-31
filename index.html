@@ -581,6 +581,9 @@
         cursor: pointer;
         line-height: 1.1;
         text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       .hero-name span {
         display: inline-block;
@@ -595,6 +598,7 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradient-flow 5s linear infinite;
+        white-space: nowrap;
       }
 
       /* === FINAL "HOLO-BADGE" GDG STYLES START === */
@@ -605,8 +609,8 @@
       }
       .gdg-link {
         text-decoration: none;
-        border-radius: 14px;
-        padding: 2px;
+        border-radius: 14px; /* Outer radius for the border */
+        padding: 2px; /* This creates the border thickness */
         position: relative;
         display: inline-block;
         background: linear-gradient(
