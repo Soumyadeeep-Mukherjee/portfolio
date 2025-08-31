@@ -575,15 +575,12 @@
 
       .hero-name {
         font-family: var(--font-secondary);
-        font-size: clamp(1.6rem, 7.5vw, 5rem); /* Adjusted for better scaling */
+        font-size: clamp(2rem, 8vw, 5rem);
         font-weight: 700;
         text-transform: uppercase;
         cursor: pointer;
         line-height: 1.1;
         text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        white-space: nowrap; /* Force single line */
-        overflow: hidden; /* Hide overflow if it happens */
-        text-overflow: ellipsis; /* Add ... if text overflows */
       }
       .hero-name span {
         display: inline-block;
@@ -598,7 +595,6 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradient-flow 5s linear infinite;
-        white-space: nowrap; /* Important for post-animation state */
       }
 
       /* === FINAL "HOLO-BADGE" GDG STYLES START === */
@@ -1123,10 +1119,17 @@
           grid-row: 2;
           text-align: center;
         }
-
+        .hero-text .card-content {
+          padding: 25px 15px; /* Reduced padding on mobile */
+        }
         .hero-name {
-          font-size: 2.8rem;
+          font-size: 2.5rem; /* Reduced font size */
           text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
+          white-space: normal; /* Allow name to wrap gracefully */
+        }
+        .hero-name .name-break {
+            display: block; /* Force the line break after the first name */
+            height: 0;
         }
         .hero-subtitle {
           font-size: 1rem;
@@ -1145,7 +1148,7 @@
 
       @media (max-width: 480px) {
         .hero-name {
-          font-size: 2.4rem;
+          font-size: 2.1rem; /* Further reduce font size */
         }
         .profile {
           max-width: 200px;
@@ -1667,9 +1670,12 @@
               // After animation, wrap in spans for gradient and handle spaces
               heroName.innerHTML = originalText
                 .split("")
-                .map((letter) =>
-                  letter === " " ? "&nbsp;" : `<span>${letter}</span>`
-                )
+                .map((letter) => {
+                  if (letter === " ") {
+                    return '<span class="name-break">&nbsp;</span>'; // Use a class for the space
+                  }
+                  return `<span>${letter}</span>`;
+                })
                 .join("");
             }
 
