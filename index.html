@@ -575,15 +575,15 @@
 
       .hero-name {
         font-family: var(--font-secondary);
-        font-size: clamp(2rem, 8vw, 5rem);
+        font-size: clamp(1.6rem, 7.5vw, 5rem); /* Adjusted for better scaling */
         font-weight: 700;
         text-transform: uppercase;
         cursor: pointer;
         line-height: 1.1;
         text-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+        white-space: nowrap; /* Force single line */
+        overflow: hidden; /* Hide overflow if it happens */
+        text-overflow: ellipsis; /* Add ... if text overflows */
       }
       .hero-name span {
         display: inline-block;
@@ -598,7 +598,7 @@
         background-clip: text;
         -webkit-text-fill-color: transparent;
         animation: gradient-flow 5s linear infinite;
-        white-space: nowrap;
+        white-space: nowrap; /* Important for post-animation state */
       }
 
       /* === FINAL "HOLO-BADGE" GDG STYLES START === */
@@ -609,8 +609,8 @@
       }
       .gdg-link {
         text-decoration: none;
-        border-radius: 14px; /* Outer radius for the border */
-        padding: 2px; /* This creates the border thickness */
+        border-radius: 14px;
+        padding: 2px;
         position: relative;
         display: inline-block;
         background: linear-gradient(
@@ -1126,7 +1126,7 @@
 
         .hero-name {
           font-size: 2.8rem;
-          white-space: normal; /* Allow name to wrap on mobile */
+          text-shadow: 0 0 6px rgba(0, 255, 255, 0.5);
         }
         .hero-subtitle {
           font-size: 1rem;
